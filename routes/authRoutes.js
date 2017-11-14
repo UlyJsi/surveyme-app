@@ -14,14 +14,14 @@ module.exports = (app) => { // -> in
 
 // facebook authentication
     
-    app.get(
-        "/surveyme-dev/auth/facebook",
-        passport.authenticate("facebook", {
-            scope: ["id", "profile"]
-        })
-    );
+    // app.get(
+    //     "/surveyme-dev/auth/facebook",
+    //     passport.authenticate("facebook", {
+    //         scope: ["id", "profile"]
+    //     })
+    // );
     
-    app.get("/surveyme-dev/auth/facebook/callback", passport.authenticate("facebook")); // <- out
+    // app.get("/surveyme-dev/auth/facebook/callback", passport.authenticate("facebook")); // <- out
 
     app.get("/api/logout", (req, res) => { // display in browser -> test
         req.logout(); 
