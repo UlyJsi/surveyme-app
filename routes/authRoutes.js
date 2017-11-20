@@ -10,14 +10,20 @@ module.exports = (app) => { // -> in
         })
     );
 
-    app.get("/auth/google/callback", passport.authenticate("google")); // <- out
+    app.get(
+        "/auth/google/callback",
+        passport.authenticate("google"),
+        (req, res) => {
+            res.redirect("/surveys");
+        }
+    ); // <- out
 
 // facebook authentication
     
     app.get(
         "/surveyme-dev/auth/facebook",
         passport.authenticate("facebook", {
-            scope: ["id", "profile"]
+            scope: ["publish_actions"]
         })
     );
     
@@ -25,7 +31,7 @@ module.exports = (app) => { // -> in
 
     app.get("/api/logout", (req, res) => { // display in browser -> test
         req.logout(); 
-        res.send(req.user);// empty window
+        res.redirect("/");
     });
 
     app.get("/api/current_user", (req, res) => { // display in browser -> test
